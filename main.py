@@ -25,7 +25,7 @@ def blur_face(frame, x, y, w, h, size=20):
 
 
 def detect_faces():
-    detector = cv2.FaceDetectorYN.create(MODEL, "", (320, 320), 0.4, 0.3, 5000)
+    detector = cv2.FaceDetectorYN.create(MODEL, "", (320, 320), 0.1, 0.3, 5000)
     output_width, output_height = 1920, 1080
 
     cap = cv2.VideoCapture(0)
