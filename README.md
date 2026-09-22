@@ -1,13 +1,16 @@
 # AnonymArt
 
-AnonymArt ouvre la webcam, détecte les visages avec **YuNet**, puis floute les zones détectées. L'image traitée peut aussi être envoyée vers une caméra virtuelle avec `pyvirtualcam`.
+AnonymArt détecte les visages avec **YuNet** et floute les zones détectées, en direct depuis la webcam ou sur une vidéo importée. Au lancement, une interface permet de choisir la source :
+
+- **Webcam en direct** : l'image floutée est envoyée vers une caméra virtuelle avec `pyvirtualcam`.
+- **Vidéo importée** : le fichier choisi est traité image par image, puis la vidéo floutée est enregistrée à côté du fichier source (`<nom>_floute.mp4`).
 
 ## Prérequis
 
 - Python 3.9 à 3.14
-- Une webcam
+- Une webcam (uniquement pour le mode webcam en direct)
 - Le fichier `face_detection_yunet.onnx` à la racine du projet
-- Une caméra virtuelle si la sortie doit être utilisée dans Zoom, Teams, OBS, etc.
+- Une caméra virtuelle si la sortie webcam doit être utilisée dans Zoom, Teams, OBS, etc.
 
 ## Installation
 
@@ -62,7 +65,7 @@ Le fichier doit faire environ 230 Ko. Un fichier d'environ 130 octets indique g�
 
 ## Caméra virtuelle
 
-`pyvirtualcam` est une interface Python : il lui faut une caméra virtuelle installée par le système.
+Nécessaire uniquement pour le mode webcam en direct (pas pour l'import de vidéo). `pyvirtualcam` est une interface Python : il lui faut une caméra virtuelle installée par le système.
 
 - **macOS** : installez [OBS Studio](https://obsproject.com/download), puis activez `OBS Virtual Camera`.
 - **Windows** : installez [OBS Studio](https://obsproject.com/download), puis activez `OBS Virtual Camera`.
@@ -78,7 +81,10 @@ Activez d'abord `.venv`, puis lancez :
 python main.py
 ```
 
-Autorisez l'accès à la caméra lorsque le système le demande. Dans la fenêtre OpenCV, `q` ou `Échap` quitte le programme.
+Une fenêtre s'ouvre pour choisir le mode :
+
+- **Activer le floutage sur la webcam** : autorisez l'accès à la caméra lorsque le système le demande. Dans la fenêtre OpenCV, `q` ou `Échap` quitte le programme.
+- **Importer une vidéo à flouter** : sélectionnez un fichier vidéo (`.mp4`, `.avi`, `.mov`, `.mkv`, `.webm`). La progression s'affiche dans le terminal ; le résultat est enregistré à côté du fichier d'origine sous le nom `<nom>_floute.mp4`.
 
 ## Dépannage
 
